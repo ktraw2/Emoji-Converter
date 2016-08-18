@@ -3,6 +3,7 @@ package com.ksoft.emojiconverter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public static final boolean DEBUG = false;
 
     ArrayList<MappedEmoji> mappedEmojis = new ArrayList<MappedEmoji>();
     @Override
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         mappedEmojis.add(new MappedEmoji("0x1F60B", true));
         mappedEmojis.add(new MappedEmoji("0x1F60E", true));
         mappedEmojis.add(new MappedEmoji("0x1F60D", true));
+
     }
 
     /**
@@ -39,32 +42,45 @@ public class MainActivity extends AppCompatActivity {
      */
     public void convertEmoji(View view) {
         ImageView img = (ImageView) findViewById(R.id.image);
-        img.setImageResource(R.drawable.websitefavicon);
-        //TextView txt = (TextView) findViewById(R.id.prompt);
         EditText edit = (EditText) findViewById(R.id.edit);
-        //txt.setText("hello " + new String(Character.toChars(0x1F600)) + " " + edit.getText() + " " + edit.getText().toString().codePointAt(0));
-        if (Integer.parseInt(Integer.toHexString(edit.getText().toString().codePointAt(0)), 16) == 0x1F600)
-            System.out.println("you're a good programmer!");
-        else
-            System.out.println("not equal");
-        String codepointEntered = "0x" + Integer.toHexString(edit.getText().toString().codePointAt(0)).toUpperCase();
-        System.out.println("HEX CODE POINT: " + codepointEntered);
-        boolean valid = false;
-        MappedEmoji validEmoji = null;
-        for (MappedEmoji m : mappedEmojis)
-            if (codepointEntered.equals(m.getUnicodeHexString()))
-            {
-                valid = true;
-                validEmoji = m;
-            }
-        if (valid && validEmoji != null)
+        String textEntered = edit.getText().toString();
+        if (textEntered.length() != 0)
         {
-            System.out.println("gooood programmer!");
-            System.out.println(validEmoji.getResName());
-            int resID = getResources().getIdentifier(validEmoji.getResName(), "drawable", getPackageName());
-            System.out.println("resID: " + resID);
-            img.setImageResource(resID);
+            if (DEBUG)
+            {
+                if (Integer.parseInt(Integer.toHexString(textEntered.codePointAt(0)), 16) == 0x1F600)
+                    System.out.println("text equal to 0x1F600");
+                else
+                    System.out.println("not equal");
+            }
+            String codepointEntered = "0x" + Integer.toHexString(textEntered.codePointAt(0)).toUpperCase();
+            if (DEBUG)
+                System.out.println("HEX CODE POINT: " + codepointEntered);
+            boolean valid = false;
+            MappedEmoji validEmoji = null;
+            for (MappedEmoji m : mappedEmojis)
+                if (codepointEntered.equals(m.getUnicodeHexString()))
+                {
+                    valid = true;
+                    validEmoji = m;
+                }
+            if (valid && validEmoji != null)
+            {
+                int resID = getResources().getIdentifier(validEmoji.getResName(), "drawable", getPackageName());
+                img.setImageResource(resID);
+                if (DEBUG)
+                {
+                    System.out.println("the text entered is mapped");
+                    System.out.println(validEmoji.getResName());
+                    System.out.println("resID: " + resID);
+                }
+            }
+            else
+                img.setImageResource(R.drawable.unknown);
         }
-
+        else
+        {
+            img.setImageResource(R.drawable.unknown);
+        }
     }
 }

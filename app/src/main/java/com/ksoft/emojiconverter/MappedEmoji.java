@@ -20,12 +20,9 @@ public class MappedEmoji {
     {
         unicodeHexString = codepoint;
         if (convert0xtouUnderscore)
-        {
             resName = "u_" + (codepoint).substring(2).toLowerCase();
-            System.out.println(resName);
-        }
         else
-            resName = codepoint + ".png";
+            resName = codepoint;
     }
 
     public String getUnicodeHexString()
