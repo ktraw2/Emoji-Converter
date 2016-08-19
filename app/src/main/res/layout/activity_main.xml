@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:inputType="textShortMessage"
         android:maxLength="2"
-        android:hint="Enter Emoji Here"/>
+        android:hint="Enter emoji here"/>
 
     <Button
         android:layout_width="wrap_content"
