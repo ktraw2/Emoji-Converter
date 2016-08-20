@@ -13,14 +13,14 @@
     <TextView android:id="@+id/prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter an emoji here:"
+        android:text="@string/prompt"
         android:textSize="20sp"
         android:textColor="#000000"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Currently only faces are supported because those are the only emojis that can look really different on iOS."
+        android:text="@string/discalamer"
         android:textColor="#000000"/>
 
     <EditText android:id="@+id/edit"
@@ -28,18 +28,18 @@
         android:layout_height="wrap_content"
         android:inputType="textShortMessage"
         android:maxLength="2"
-        android:hint="Enter emoji here"/>
+        android:hint="@string/hint"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Convert"
+        android:text="@string/convert_button"
         android:onClick="convertEmoji"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Here is how it looks on iOS:"
+        android:text="@string/convert_text"
         android:textSize="20sp"
         android:textColor="#000000"/>
 
