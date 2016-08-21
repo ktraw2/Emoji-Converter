@@ -1,8 +1,17 @@
 <resources>
-    <string name="app_name">Emoji Converter</string>+
+    <string name="app_name">Emoji Converter</string>
     <string name="prompt">Enter an emoji here:</string>
     <string name="discalamer">Currently only faces are supported because those are the only emojis that can look really different on iOS.</string>
     <string name="hint">Enter emoji here</string>
     <string name="convert_button">Convert</string>
     <string name="convert_text">Here is how it looks on iOS:</string>
+    <string name="add_delete_menu_item">Add/Delete Emojis</string>
+    <string name="step1">Step 1: Go to <a href="http://unicode.org/emoji/charts/full-emoji-list.html">the Unicode website</a> (it may take a while to load the list)</string>
+    <string name="step2">Step 2: Find the emoji that is to be added, long press on the image under "Apple", and save the image</string>
+    <string name="step3">Step 3: Select and copy the value under "Code" in the same row as the emoji (ex: U+1F600)</string>
+    <string name="step4">Step 4: Paste the copied text into the box below</string>
+    <string name="step5">Step 5: Select the image that was just downloaded (it should be under "Downloads")</string>
+    <string name="unicodeHint">Enter emoji code here</string>
+    <string name="imagePick">Choose image</string>
+    <string name="addSubmit">Add custom emoji</string>
 </resources>
