@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         //read from /data/.../com.ksoft.emojiconverter/app_custom_emojis
         directory = cw.getDir("custom_emojis", Context.MODE_PRIVATE);
+        //directory = cw.getFilesDir();
         File[] flist = directory.listFiles();
         for (File file : flist)
             if (file.isFile())
@@ -55,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         for (Field field : R.drawable.class.getFields())
         {
             String name = field.getName();
-            if (!(name.equals("unknown")))
+            if (name.startsWith("u_"))
             {
                 //check if the user has already defined a conversion for the specified codepoint, if so, then skip over the default one
                 String codepoint = "0x" + name.substring(2).toUpperCase();
