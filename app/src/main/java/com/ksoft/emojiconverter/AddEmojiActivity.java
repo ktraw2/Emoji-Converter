@@ -10,9 +10,11 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.LinkMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,6 +33,22 @@ public class AddEmojiActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_emoji);
         TextView step1 = (TextView) findViewById(R.id.step1);
         step1.setMovementMethod(LinkMovementMethod.getInstance());
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        setTitle("Add Custom Emojis");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     public void addCustomEmoji(View view)
@@ -43,7 +61,9 @@ public class AddEmojiActivity extends AppCompatActivity {
             if (imageView.getDrawable() != null)
             {
                 System.out.println("IMAGE: " + storeImage(((BitmapDrawable)imageView.getDrawable()).getBitmap(), "u_" + text.substring(2).toLowerCase() + ".png"));
-                Toast.makeText(getApplicationContext(), "IMAGE SAVED", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(this, MainActivity.class);
+                //startActivity(intent);
+                finish();
             }
         }
     }
@@ -70,7 +90,7 @@ public class AddEmojiActivity extends AppCompatActivity {
     public String storeImage(Bitmap image, String name)
     {
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
-        //save to /data/data/com.ksoft.emojiconverter/app_data/custom_emojis
+        //save to /data/.../com.ksoft.emojiconverter/app_custom_emojis
         File directory = cw.getDir("custom_emojis", Context.MODE_PRIVATE);
         File mypath = new File(directory, name);
         FileOutputStream fos = null;
@@ -78,10 +98,12 @@ public class AddEmojiActivity extends AppCompatActivity {
         {
             fos = new FileOutputStream(mypath);
             image.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            Toast.makeText(getApplicationContext(), "Successfully added custom emoji", Toast.LENGTH_SHORT).show();
         }
         catch (Exception e)
         {
             e.printStackTrace();
+            Toast.makeText(getApplicationContext(), "Error adding custom emoji", Toast.LENGTH_SHORT).show();
         }
         finally
         {

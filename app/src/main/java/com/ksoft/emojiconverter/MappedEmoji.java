@@ -9,20 +9,14 @@ import android.util.StringBuilderPrinter;
 public class MappedEmoji {
     private String unicodeHexString;
     private String resName;
+    private boolean getFromDrawables;
 
-    public MappedEmoji(String codepoint, String resource)
+    public MappedEmoji(String codepoint, boolean isBuiltIn)
     {
         unicodeHexString = codepoint;
-        resName = resource;
-    }
+        resName = "u_" + (codepoint).substring(2).toLowerCase();
+        getFromDrawables = isBuiltIn;
 
-    public MappedEmoji(String codepoint, boolean convert0xtouUnderscore)
-    {
-        unicodeHexString = codepoint;
-        if (convert0xtouUnderscore)
-            resName = "u_" + (codepoint).substring(2).toLowerCase();
-        else
-            resName = codepoint;
     }
 
     public String getUnicodeHexString()
@@ -34,4 +28,6 @@ public class MappedEmoji {
     {
         return resName;
     }
+
+    public boolean getGetFromDrawables () { return getFromDrawables; }
 }
