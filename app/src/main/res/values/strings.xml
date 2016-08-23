@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Emoji Converter</string>
     <string name="prompt">Enter an emoji here:</string>
-    <string name="discalamer">Currently only faces are supported because those are the only emojis that can look really different on iOS.</string>
+    <string name="discalamer">Missing an emoji? Press the Add/Delete Emojis button at the top!</string>
     <string name="hint">Enter emoji here</string>
     <string name="convert_button">Convert</string>
     <string name="convert_text">Here is how it looks on iOS:</string>

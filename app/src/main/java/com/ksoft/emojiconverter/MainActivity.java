@@ -25,15 +25,48 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static final boolean DEBUG = true;
-    ArrayList<MappedEmoji> mappedEmojis = new ArrayList<MappedEmoji>();
+    public ArrayList<MappedEmoji> mappedEmojis = new ArrayList<MappedEmoji>();
     File directory = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mapEmojis();
+    }
 
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        mapEmojis();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.add_delete_emoji:
+                Intent intent = new Intent(this, AddDeleteActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return true;
+    }
+
+    public void mapEmojis()
+    {
         //map all emojis
+        mappedEmojis = new ArrayList<MappedEmoji>();
         //map all user set emojis
         ContextWrapper cw = new ContextWrapper(getApplicationContext());
         //read from /data/.../com.ksoft.emojiconverter/app_custom_emojis
@@ -71,27 +104,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        switch (item.getItemId())
-        {
-            case R.id.add_delete_emoji:
-                Intent intent = new Intent(this, AddDeleteActivity.class);
-                startActivity(intent);
-                break;
-        }
-        return true;
     }
 
     private Bitmap loadImageFromStorage(String path, String name)

@@ -61,8 +61,6 @@ public class AddEmojiActivity extends AppCompatActivity {
             if (imageView.getDrawable() != null)
             {
                 System.out.println("IMAGE: " + storeImage(((BitmapDrawable)imageView.getDrawable()).getBitmap(), "u_" + text.substring(2).toLowerCase() + ".png"));
-                //Intent intent = new Intent(this, MainActivity.class);
-                //startActivity(intent);
                 finish();
             }
         }
