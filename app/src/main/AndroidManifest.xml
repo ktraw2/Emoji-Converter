@@ -18,7 +18,7 @@
         <activity android:name=".AddDeleteActivity" />
         <activity android:name=".AddEmojiActivity" />
         <activity android:name=".DeleteEmojiActivity"></activity>
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     </application>
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
