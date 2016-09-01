@@ -14,4 +14,6 @@
     <string name="unicodeHint">Enter emoji code here</string>
     <string name="imagePick">Choose image</string>
     <string name="addSubmit">Add custom emoji</string>
+    <string name="appwidget_text">Emoji Converter</string>
+    <string name="add_widget">Add widget</string>
 </resources>

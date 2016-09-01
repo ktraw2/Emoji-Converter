@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ksoft.emojiconverter">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,8 +19,17 @@
         </activity>
         <activity android:name=".AddDeleteActivity" />
         <activity android:name=".AddEmojiActivity" />
-        <activity android:name=".DeleteEmojiActivity"></activity>
+        <activity android:name=".DeleteEmojiActivity" />
+
+        <receiver android:name=".QuickConvertWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quick_convert_widget_info" />
+        </receiver>
     </application>
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
