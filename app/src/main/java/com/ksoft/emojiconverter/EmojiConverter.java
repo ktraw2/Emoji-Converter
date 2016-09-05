@@ -50,7 +50,8 @@ public class EmojiConverter {
                 {
                     String string = "0x" + name.substring(2, name.length() - 4).toUpperCase();
                     mappedEmojis.add(new MappedEmoji(string, false));
-                    System.out.println("added " + string + " from custom emojis");
+                    if (DEBUG)
+                        System.out.println("added " + string + " from custom emojis");
                 }
             }
 
@@ -69,7 +70,8 @@ public class EmojiConverter {
                 if (goAhead)
                 {
                     mappedEmojis.add(new MappedEmoji(codepoint, true));
-                    System.out.println("added " + codepoint + " from default emojis");
+                    if (DEBUG)
+                        System.out.println("added " + codepoint + " from default emojis");
                 }
             }
         }

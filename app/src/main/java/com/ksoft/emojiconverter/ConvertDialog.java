@@ -10,9 +10,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ConvertDialog extends Activity {
-    static final String INTENT_ACTION = "com.ksoft.emojiconverter.widgetdialogfinished";
-    static final String INTENT_EXTRA_DIALOG_RESULT = "dialogresult";
-    static final String INTENT_EXTRA_TEXT_ENTERED = "textentered";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +20,17 @@ public class ConvertDialog extends Activity {
     public void clickOK(View view)
     {
         EditText edit = (EditText) findViewById(R.id.dialog_edit);
-        Intent intent = new Intent(INTENT_ACTION);
-        intent.putExtra(INTENT_EXTRA_DIALOG_RESULT, "OK");
-        intent.putExtra(INTENT_EXTRA_TEXT_ENTERED, edit.getText().toString());
+        Intent intent = new Intent(IntentStrings.INTENT_ACTION_FINISHED);
+        intent.putExtra(IntentStrings.INTENT_EXTRA_DIALOG_RESULT, "OK");
+        intent.putExtra(IntentStrings.INTENT_EXTRA_TEXT_ENTERED, edit.getText().toString());
         sendBroadcast(intent);
         finish();
     }
 
     public void clickCancel(View view)
     {
-        Intent intent = new Intent(INTENT_ACTION);
-        intent.putExtra(INTENT_EXTRA_DIALOG_RESULT, "CANCEL");
+        Intent intent = new Intent(IntentStrings.INTENT_ACTION_FINISHED);
+        intent.putExtra(IntentStrings.INTENT_EXTRA_DIALOG_RESULT, "CANCEL");
         sendBroadcast(intent);
         finish();
     }

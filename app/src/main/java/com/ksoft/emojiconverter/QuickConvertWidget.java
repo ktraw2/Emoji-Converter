@@ -6,7 +6,6 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -15,9 +14,6 @@ import android.widget.Toast;
  */
 public class QuickConvertWidget extends AppWidgetProvider {
     static EmojiConverter emojiConverter = null;
-    static final String INTENT_ACTION = "com.ksoft.emojiconverter.widgetdialogfinished";
-    static final String INTENT_EXTRA_DIALOG_RESULT = "dialogresult";
-    static final String INTENT_EXTRA_TEXT_ENTERED = "textentered";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager, int appWidgetId) {
         // Construct the RemoteViews object
@@ -39,14 +35,14 @@ public class QuickConvertWidget extends AppWidgetProvider {
     public void onReceive (Context context, Intent intent)
     {
         final String ACTION = intent.getAction();
-        if (ACTION.equals(INTENT_ACTION))
+        if (ACTION.equals(IntentStrings.INTENT_ACTION_FINISHED))
         {
-            String result = intent.getStringExtra(INTENT_EXTRA_DIALOG_RESULT);
-            if (result.equals("OK"))
-            {
-                String text = intent.getStringExtra(INTENT_EXTRA_TEXT_ENTERED);
+            String result = intent.getStringExtra(IntentStrings.INTENT_EXTRA_DIALOG_RESULT);
+            if (result.equals("OK")) {
+                String text = intent.getStringExtra(IntentStrings.INTENT_EXTRA_TEXT_ENTERED);
                 RemoteViews myviews = new RemoteViews(context.getPackageName(), R.layout.quick_convert_widget);
-                initEmojiConverter(context);
+                if (!(initEmojiConverter(context)))
+                    emojiConverter.mapEmojis();
                 myviews.setImageViewBitmap(R.id.appwidget_view, emojiConverter.convertEmoji(text, context.getPackageName()));
 
                 //Update the appwidget
@@ -84,10 +80,15 @@ public class QuickConvertWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 
-    public static void initEmojiConverter(Context context)
+    public static boolean initEmojiConverter(Context context)
     {
         if (emojiConverter == null)
+        {
             emojiConverter = new EmojiConverter(context, context.getResources());
+            return true;
+        }
+        else
+            return false;
     }
 }
 
