@@ -24,9 +24,6 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    public static final boolean DEBUG = false;
-    public ArrayList<MappedEmoji> mappedEmojis = new ArrayList<MappedEmoji>();
-    File directory = null;
     EmojiConverter emojiConverter = null;
 
     @Override
@@ -35,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (emojiConverter == null)
             emojiConverter = new EmojiConverter(getApplicationContext(), this.getResources());
-        emojiConverter.mapEmojis();
     }
 
     @Override
@@ -73,6 +69,6 @@ public class MainActivity extends AppCompatActivity {
     public void convertEmoji(View view) {
         ImageView img = (ImageView) findViewById(R.id.image);
         EditText edit = (EditText) findViewById(R.id.edit);
-        img.setImageBitmap(emojiConverter.convertEmoji(edit, getPackageName()));
+        img.setImageBitmap(emojiConverter.convertEmoji(edit.getText().toString(), getPackageName()));
     }
 }

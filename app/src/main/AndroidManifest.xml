@@ -20,16 +20,22 @@
         <activity android:name=".AddDeleteActivity" />
         <activity android:name=".AddEmojiActivity" />
         <activity android:name=".DeleteEmojiActivity" />
+        <activity
+            android:name=".ConvertDialog"
+            android:label="Quick Conversion"
+            android:theme="@android:style/Theme.DeviceDefault.Dialog" />
 
         <receiver android:name=".QuickConvertWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.ksoft.emojiconverter.widgetdialogfinished" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/quick_convert_widget_info" />
         </receiver>
+
     </application>
 
 </manifest>

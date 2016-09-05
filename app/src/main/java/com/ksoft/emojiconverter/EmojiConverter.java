@@ -5,6 +5,7 @@ import android.content.ContextWrapper;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,6 +29,7 @@ public class EmojiConverter {
     {
         context = getContext;
         resources = getResources;
+        mapEmojis();
     }
 
     public void mapEmojis()
@@ -104,21 +106,20 @@ public class EmojiConverter {
 
     /**
      * called when the user presses the "Convert" button
-     * @param edit edittext to get text from
+     * @param textToConvert text to convert
      * @param packageName name of package
      */
-    public Bitmap convertEmoji(EditText edit, String packageName) {
-        String textEntered = edit.getText().toString();
-        if (textEntered.length() != 0)
+    public Bitmap convertEmoji(String textToConvert, String packageName) {
+        if (textToConvert.length() != 0)
         {
             if (DEBUG)
             {
-                if (Integer.parseInt(Integer.toHexString(textEntered.codePointAt(0)), 16) == 0x1F600)
+                if (Integer.parseInt(Integer.toHexString(textToConvert.codePointAt(0)), 16) == 0x1F600)
                     System.out.println("text equal to 0x1F600");
                 else
                     System.out.println("not equal");
             }
-            String codepointEntered = "0x" + Integer.toHexString(textEntered.codePointAt(0)).toUpperCase();
+            String codepointEntered = "0x" + Integer.toHexString(textToConvert.codePointAt(0)).toUpperCase();
             if (DEBUG)
                 System.out.println("HEX CODE POINT: " + codepointEntered);
             boolean valid = false;
@@ -151,6 +152,12 @@ public class EmojiConverter {
             }
             else
                 return BitmapFactory.decodeResource(resources, R.drawable.unknown);
+        }
+        else //if the user leaves the box blank, then return a blank image, as it is assumed the user wants to clear the image area
+        {
+            int[] colors = new int[1];
+            colors[0] = Color.TRANSPARENT;
+            return Bitmap.createBitmap(colors, 1, 1, Bitmap.Config.ALPHA_8);
         }
         return BitmapFactory.decodeResource(resources, R.drawable.unknown);
     }
