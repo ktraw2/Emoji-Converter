@@ -11,10 +11,11 @@
     <string name="step3">Step 3: Select and copy the value under "Code" in the same row as the emoji (ex: U+1F600)</string>
     <string name="step4">Step 4: Paste the copied text into the box below</string>
     <string name="step5">Step 5: Select the image that was just downloaded (it should be under "Downloads")</string>
-    <string name="unicodeHint">Enter emoji code here</string>
+    <string name="unicodeHint">Paste code here</string>
     <string name="imagePick">Choose image</string>
     <string name="addSubmit">Add custom emoji</string>
     <string name="appwidget_text">Emoji Converter</string>
     <string name="add_widget">Add widget</string>
     <string name="configure">Configure</string>
+    <string name="addEmoji">Add Emoji</string>
 </resources>

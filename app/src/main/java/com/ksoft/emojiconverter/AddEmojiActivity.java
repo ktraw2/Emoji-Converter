@@ -63,6 +63,13 @@ public class AddEmojiActivity extends AppCompatActivity {
                 System.out.println("IMAGE: " + storeImage(((BitmapDrawable)imageView.getDrawable()).getBitmap(), "u_" + text.substring(2).toLowerCase() + ".png"));
                 finish();
             }
+            else
+                Toast.makeText(getApplicationContext(), "Please select an image", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "The emoji code entered is invalid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Make sure it starts with \"U+\"", Toast.LENGTH_SHORT).show();
         }
     }
 
