@@ -55,12 +55,12 @@ public class AddEmojiActivity extends AppCompatActivity {
     {
         EditText editText = (EditText) findViewById(R.id.emojiCode);
         String text = editText.getText().toString();
-        if (text.length() > 2 && text.startsWith("U+"))
+        if (text.length() > 0)
         {
             ImageView imageView = (ImageView) findViewById(R.id.preview);
             if (imageView.getDrawable() != null)
             {
-                System.out.println("IMAGE: " + storeImage(((BitmapDrawable)imageView.getDrawable()).getBitmap(), "u_" + text.substring(2).toLowerCase() + ".png"));
+                System.out.println("IMAGE: " + storeImage(((BitmapDrawable)imageView.getDrawable()).getBitmap(), "u_" + Integer.toHexString(text.codePointAt(0)).toLowerCase() + ".png"));
                 finish();
             }
             else

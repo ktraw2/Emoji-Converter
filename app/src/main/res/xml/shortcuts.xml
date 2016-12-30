@@ -3,13 +3,27 @@
     <shortcut
         android:shortcutId="addEmoji"
         android:enabled="true"
-        android:shortcutShortLabel="@string/addEmoji"
-        android:shortcutLongLabel="@string/addEmoji"
-        android:shortcutDisabledMessage="@string/addEmoji">
+        android:icon="@mipmap/ic_add_emoji"
+        android:shortcutShortLabel="@string/addEmojiShort"
+        android:shortcutLongLabel="@string/addEmojiLong"
+        android:shortcutDisabledMessage="@string/addEmojiLong">
         <intent
             android:action="android.intent.action.VIEW"
             android:targetPackage="com.ksoft.emojiconverter"
             android:targetClass="com.ksoft.emojiconverter.AddEmojiActivity" />
+        <categories android:name="android.shortcut.settings" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="deleteEmoji"
+        android:enabled="true"
+        android:icon="@mipmap/ic_delete_emoji"
+        android:shortcutShortLabel="@string/deleteEmojiShort"
+        android:shortcutLongLabel="@string/deleteEmojiLong"
+        android:shortcutDisabledMessage="@string/deleteEmojiLong">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.ksoft.emojiconverter"
+            android:targetClass="com.ksoft.emojiconverter.DeleteEmojiActivity" />
         <categories android:name="android.shortcut.settings" />
     </shortcut>
 </shortcuts>

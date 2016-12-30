@@ -28,21 +28,16 @@
         android:text="@string/step3"
         android:textColor="#000000"/>
 
+    <EditText android:id="@+id/emojiCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLength="2"
+        android:hint="@string/hint"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/step4"
-        android:textColor="#000000"/>
-
-    <EditText android:id="@+id/emojiCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/unicodeHint"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/step5"
         android:textColor="#000000"/>
 
     <LinearLayout
